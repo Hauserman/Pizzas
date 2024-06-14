@@ -7,4 +7,9 @@ const connection = await mysql.createConnection({
     database: "pizzeria",
 }); 
 
-console.log("Prueba")
+async function getAll(){
+    const [result, fields] = await connection.query("SELECT * FROM Pizza");
+    console.log(result);
+}
+
+getAll()
