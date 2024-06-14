@@ -12,4 +12,23 @@ async function getAll(){
     console.log(result);
 }
 
-getAll()
+async function insertpizza(nombre, IsLibreGluten, importe, descripcion){
+    const [result, fields] = await connection.query(
+        "INSERT INTO pizza (nombre, libreGluten, importe, descripcion) VALUES (?, ?, ?, ?)",
+        [nombre, IsLibreGluten, importe, descripcion]
+    );
+}
+
+async function update(nombre, IsLibreGluten, importe, descripcion, id){
+    const [result, fields] = await connection.query(
+        "UPDATE pizza SET nombre = ?, libreGluten = ?, importe = ?, descripcion = ? WHERE id = ?",
+        [nombre, IsLibreGluten, importe, descripcion, id]
+    );
+}
+
+async function deleteById(id){
+    const [result, fields] = await connection.query(
+        "DELETE FROM pizza WHERE id = ?",
+        [id]
+    );
+}
